@@ -55,6 +55,7 @@ public class BrokerStartup {
     public static InternalLogger log;
 
     public static void main(String[] args) {
+        // 创建BrokerConfig，NettyServerConfig，NettyClientConfig。
         start(createBrokerController(args));
     }
 

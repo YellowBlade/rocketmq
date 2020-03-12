@@ -54,7 +54,9 @@ public class NamesrvStartup {
     public static NamesrvController main0(String[] args) {
 
         try {
+            // 加载namesrvConfig和NettyServerConfig
             NamesrvController controller = createNamesrvController(args);
+            //netty server启动,初始化各种定时任务
             start(controller);
             String tip = "The Name Server boot success. serializeType=" + RemotingCommand.getSerializeTypeConfigInThisServer();
             log.info(tip);
@@ -136,7 +138,7 @@ public class NamesrvStartup {
         if (null == controller) {
             throw new IllegalArgumentException("NamesrvController is null");
         }
-
+        //创建netty server初始化定时任务
         boolean initResult = controller.initialize();
         if (!initResult) {
             controller.shutdown();
